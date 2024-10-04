@@ -32,4 +32,15 @@ public class RunRepository {
   void create(Run run) {
     runs.add(run);
   }
+
+  void update(Run run, Integer id) {
+    Optional<Run> currentRun = findById(id);
+    if (currentRun.isPresent()) {
+      runs.set(runs.indexOf(currentRun.get()), run);
+    }
+  }
+
+  void delete(Integer id) {
+    runs.removeIf(run -> run.id() == id);
+  }
 }
