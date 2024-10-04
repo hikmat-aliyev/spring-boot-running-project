@@ -3,6 +3,7 @@ package dev.hikmat.runnerz.run;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
@@ -22,10 +23,13 @@ public class RunRepository {
     runs.add(new Run(2, "hello2", LocalDateTime.now(), LocalDateTime.now(), 20, Location.OUTDOOR));
   }
 
-  Run findById(Integer id) {
+  Optional<Run> findById(Integer id) {
     return runs.stream()
         .filter(run -> run.id() == id)
-        .findFirst()
-        .get();
+        .findFirst();
+  }
+
+  void create(Run run) {
+    runs.add(run);
   }
 }
