@@ -20,12 +20,4 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@Bean
-	CommandLineRunner runner() {
-		return args -> {
-			Run run = new Run(1, "hello", LocalDateTime.now(), LocalDateTime.now(), 20, Location.OUTDOOR);
-			log.info("Run" + run);
-		};
-	}
-
 }

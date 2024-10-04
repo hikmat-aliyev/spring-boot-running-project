@@ -21,4 +21,11 @@ public class RunRepository {
     runs.add(new Run(1, "hello1", LocalDateTime.now(), LocalDateTime.now(), 20, Location.OUTDOOR));
     runs.add(new Run(2, "hello2", LocalDateTime.now(), LocalDateTime.now(), 20, Location.OUTDOOR));
   }
+
+  Run findById(Integer id) {
+    return runs.stream()
+        .filter(run -> run.id() == id)
+        .findFirst()
+        .get();
+  }
 }
