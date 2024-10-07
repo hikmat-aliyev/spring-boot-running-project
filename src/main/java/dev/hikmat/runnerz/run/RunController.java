@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/runs")
 public class RunController {
@@ -40,13 +42,15 @@ public class RunController {
 
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping("")
-  void create(@RequestBody Run run) {
+  // before we call runRepository create method, we validate the run object
+  // which is provided in the body by user
+  void create(@Valid @RequestBody Run run) {
     runRepository.create(run);
   }
 
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @PutMapping("/{id}")
-  void update(@RequestBody Run run, @PathVariable Integer id) {
+  void update(@Valid @RequestBody Run run, @PathVariable Integer id) {
     runRepository.update(run, id);
   }
 

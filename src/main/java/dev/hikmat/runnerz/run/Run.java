@@ -13,4 +13,10 @@ public record Run(
         @Positive Integer miles,
         Location location) {
 
+    public Run {
+        if (completedOn.isBefore(startedOn)) {
+            throw new IllegalArgumentException("Completed on should be after Started on");
+        }
+    }
+
 }
